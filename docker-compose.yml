@@ -122,7 +122,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    environment:
+#    environment:
 #      PMA_HOSTS: db_moodle,db_backend
 #      PMA_PORT: 3306
 #      PMA_USER: root
