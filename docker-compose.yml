@@ -112,6 +112,7 @@ services:
       - traefik_gateway
     environment:
       API_URL: "https://${_URL_BACKEND}/api"
+      MOODLE_URL: "https://${_URL_MOODLE}"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.3d_${_DEPLOYMENT_NAME}.rule=Host(`${_URL_3D}`)"
