@@ -54,18 +54,11 @@ services:
       MOODLE_URL: "https://${_URL_MOODLE}"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.3d_${_DEPLOYMENT_NAME}.rule=Host(`${_URL_3D}`)"
+      - "traefik.http.routers.3d_${_DEPLOYMENT_NAME}.rule=Host(`${_URL_3D}`) || Host(`engine.projekt-adler.eu`)"
       - "traefik.http.routers.3d_${_DEPLOYMENT_NAME}.tls=true"
       - "traefik.http.routers.3d_${_DEPLOYMENT_NAME}.tls.certresolver=le"
       - "traefik.http.routers.3d_${_DEPLOYMENT_NAME}.entrypoints=websecure"
       - "traefik.http.services.3d_${_DEPLOYMENT_NAME}.loadbalancer.server.port=80"
-
-      - "traefik.http.routers.redirect-old.rule=Host(`engine.projekt-adler.eu`)"
-      - "traefik.http.routers.redirect-old.entrypoints=websecure"
-      - "traefik.http.routers.redirect-old.middlewares=redirect-to-new"
-      - "traefik.http.middlewares.redirect-to-new.redirectregex.regex=^https://engine\\.projekt-adler\\.eu(.*)"
-      - "traefik.http.middlewares.redirect-to-new.redirectregex.replacement=https://play.projekt-adler.eu$${1}"
-      - "traefik.http.middlewares.redirect-to-new.redirectregex.permanent=true"
     env_file:
       - stack.env
 
